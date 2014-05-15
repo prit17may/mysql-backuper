@@ -1,6 +1,6 @@
 <?php footer() ?>
-<script src="<?php js_url('jquery/jquery.min.js') ?>"></script>
-<script src="<?php js_url('bootstrap/bootstrap.min.js') ?>"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="<?php js_url('backuper.js') ?>"></script>
 <script>
     $(document).ready(function() {
