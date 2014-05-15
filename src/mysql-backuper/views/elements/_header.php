@@ -5,11 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--<link rel="shortcut icon" href="../../assets/ico/favicon.ico">-->
-        <title>mysql Backuper</title>
-        <link href="<?php css_url('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-        <link href="<?php css_url('bootstrap/css/bootstrap-theme.min.css') ?>" rel="stylesheet">
+        <title>mysql-Backuper</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php css_url('style.css') ?>" rel="stylesheet">
-        <link href="<?php css_url('fa/css/font-awesome.min.css') ?>" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     </head>
     <body>
