@@ -10,10 +10,9 @@ $timezones = timezones();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>One Time Configuration</title>
-        <link href="<?php echo main_url ?>css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?php echo main_url ?>css/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link href="<?php echo main_url ?>css/style.css" rel="stylesheet">
-        <link href="<?php echo main_url ?>css/fa/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     </head>
     <body>
@@ -69,7 +68,7 @@ $timezones = timezones();
             <div class="container">
                 <p class="text-muted">
                     Designed &amp; Developed by <a href="https://www.facebook.com/pritpalsingh.in" target="_blank">Pritpal Singh</a>
-                    <span class="pull-right">Designed Using <a href="http://getbootstrap.com" target="_blank">Bootstrap</a></span>
+                    <span class="pull-right hidden-xs">Designed Using <a href="http://getbootstrap.com" target="_blank">Bootstrap</a></span>
                 </p>
             </div>
         </div>
