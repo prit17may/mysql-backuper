@@ -3,7 +3,7 @@ mysql-backuper
 
 a responsive backup utility for mysql databases for php
 
-configuration(*requred)
+configuration(*required)
 <br />
 Open <code>"/include/url_defines.php"</code> and set main url for backuper
 <br />
