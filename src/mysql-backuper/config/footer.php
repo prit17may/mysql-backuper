@@ -1,5 +1,5 @@
-<script src="<?php echo main_url?>js/jquery/jquery.min.js"></script>
-<script src="<?php echo main_url?>js/bootstrap/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="<?php echo main_url?>js/backuper.js"></script>
 <script>
     $(document).ready(function() {
