@@ -3,10 +3,13 @@
 define('root', getcwd() . '/');
 require_once root . 'include/functions.php';
 
-require_once root . '/include/url_defines.php';
+require_once root . 'include/url_defines.php';
 if (!file_exists(root . '/include/db_defines.php')) {
     header("Location: " . base_url('config/config.php'));
     exit;
+}
+if (!is_dir(root . 'backups/')) {
+    mkdir(root . 'backups/', 0777, TRUE);
 }
 require_once root . '/include/db_defines.php';
 require_once root . 'include/controller.php';
