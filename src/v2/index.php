@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-define('root', getcwd() . '/');
+define('root', str_replace('\\', '/', getcwd()) . '/');
 require_once root . 'include/functions.php';
 
 require_once root . 'include/url_defines.php';
