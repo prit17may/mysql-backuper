@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+ob_start();
+
 define('root', str_replace('\\', '/', getcwd()) . '/');
 require_once root . 'include/functions.php';
 
@@ -14,6 +16,7 @@ if (!is_dir(root . 'backups/')) {
 }
 require_once root . '/include/db_defines.php';
 require_once root . 'include/controller.php';
+
 //call the controller class
 $config = array(
     'database_type' => database_type,
@@ -52,3 +55,4 @@ if (isset($vars) && !empty($vars) && $vars[1]) {
 } else {
     $obj->view('home', '', TRUE);
 }
+ob_flush();
