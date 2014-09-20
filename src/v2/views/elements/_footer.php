@@ -18,7 +18,7 @@
         }
 
         function sync_call(url, data, post_call, original_response) {
-            post_call = typeof post_call !== 'undefined' ? post_call : false;
+            post_call = typeof post_call === 'boolean' ? post_call : false;
             original_response = typeof original_response !== 'undefined' ? original_response : false;
             $.ajaxSetup({
                 async: false
