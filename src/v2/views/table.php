@@ -1,18 +1,20 @@
 <?php
 $table_name = $vars[2];
 if (!is_table($database, $table_name)) {
-    header("Location: " . base_url('404'));
+    header('Location: '.base_url('404'));
     exit;
 }
 $cols = get_cols($database, $table_name);
 $saved_fields = get_table_config($table_name);
 if (!empty($saved_fields)) {
     $cols = $saved_fields;
-    if (has_pk($database, $table_name))
+    if (has_pk($database, $table_name)) {
         array_unshift($cols, get_pk($database, $table_name));
+    }
 } else {
-    if (has_pk($database, $table_name))
-        $cols = array(get_pk($database, $table_name));
+    if (has_pk($database, $table_name)) {
+        $cols = [get_pk($database, $table_name)];
+    }
 }
 $all_data = $database->select($table_name, $cols);
 //pr($all_data);
@@ -21,7 +23,7 @@ $all_data = $database->select($table_name, $cols);
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <a class="pull-right" href="<?php echo base_url('table_config/' . $table_name) ?>">Select Fields to Show</a>
+                <a class="pull-right" href="<?php echo base_url('table_config/'.$table_name) ?>">Select Fields to Show</a>
                 <h3 class="panel-title"><?php echo $table_name ?></h3>
             </div>
             <div class="panel-body">

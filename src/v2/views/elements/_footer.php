@@ -33,7 +33,8 @@
             return $.parseJSON($.get(url, data).responseText);
         }
 
-<?php if (isset($vars[1]) && $vars[1] === 'tables') { ?>
+<?php if (isset($vars[1]) && $vars[1] === 'tables') {
+    ?>
             function all_tables() {
                 var table = $('table#all_tables');
                 var table_html = '<thead></thead><tbody></tbody>';
@@ -105,9 +106,13 @@
 
             }
             all_tables();
-<?php } elseif (isset($vars[1]) && $vars[1] === 'table') { ?>
+<?php
+} elseif (isset($vars[1]) && $vars[1] === 'table') {
+        ?>
 
-<?php } elseif (isset($vars[1]) && $vars[1] === 'table_config') { ?>
+<?php
+    } elseif (isset($vars[1]) && $vars[1] === 'table_config') {
+        ?>
 
             $('a#check_all').on('click', function() {
                 $(this).hide().parent().find('#uncheck_all').show();
@@ -209,7 +214,9 @@
             $('#save_all_table_config').on('click', function() {
                 $('button#save_table_config').click();
             });
-<?php } else { ?>
+<?php
+    } else {
+        ?>
             $('#backup_now').on('click', function() {
                 backup_now();
             });
@@ -398,7 +405,8 @@
 
             refresh_backups('');
 
-<?php } ?>
+<?php
+    } ?>
         $('#del_db_config').on('click', function() {
             var btn = $('#del_db_config');
             var html = btn.html();
