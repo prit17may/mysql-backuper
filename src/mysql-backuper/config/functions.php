@@ -1,100 +1,114 @@
 <?php
 
-function vd($val) {
-    echo "<pre>";
+function vd($val)
+{
+    echo '<pre>';
     var_dump($val);
-    echo "</pre>";
+    echo '</pre>';
 }
 
-function pr($val, $var_name = NULL) {
+function pr($val, $var_name = null)
+{
     if (!empty($val)) {
-        echo "<pre>";
+        echo '<pre>';
         if (isset($var_name)) {
-            echo "<div style='border:solid 2px red;color:lightgreen;background-color:black;font-size:18px;padding:5px;border-radius:5px'>Data for '<font color=red>" . $var_name . "</font>' as [key] => value</div><br>";
+            echo "<div style='border:solid 2px red;color:lightgreen;background-color:black;font-size:18px;padding:5px;border-radius:5px'>Data for '<font color=red>".$var_name."</font>' as [key] => value</div><br>";
         }
         print_r($val);
-        echo "</pre>";
+        echo '</pre>';
     }
 }
 
-function pj($Array, $pp = FALSE) {
+function pj($Array, $pp = false)
+{
     header('Content-type: text/plain');
-    if ($pp === TRUE)
+    if ($pp === true) {
         echo json_encode($Array, JSON_PRETTY_PRINT);
-    else
+    } else {
         echo json_encode($Array);
+    }
 }
 
-function caps_keys($Array, $make_lower = FALSE, $include_children = FALSE) {
+function caps_keys($Array, $make_lower = false, $include_children = false)
+{
     if (is_array($Array)) {
-        $cap_keys = array();
+        $cap_keys = [];
         foreach ($Array as $k => $v) {
-            if ($include_children === TRUE) {
+            if ($include_children === true) {
                 if (is_array($v)) {
-                    if ($make_lower === TRUE)
+                    if ($make_lower === true) {
                         $cap_keys[strtolower($k)] = caps_keys($v, $make_lower, $include_children);
-                    else
+                    } else {
                         $cap_keys[strtoupper($k)] = caps_keys($v, $make_lower, $include_children);
+                    }
                     unset($Array[$k]);
                 } else {
-                    if ($make_lower === TRUE)
+                    if ($make_lower === true) {
                         $cap_keys[strtolower($k)] = $v;
-                    else
+                    } else {
                         $cap_keys[strtoupper($k)] = $v;
+                    }
                     unset($Array[$k]);
                 }
             } else {
-                if ($make_lower === TRUE)
+                if ($make_lower === true) {
                     $cap_keys[strtolower($k)] = $v;
-                else
+                } else {
                     $cap_keys[strtoupper($k)] = $v;
+                }
                 unset($Array[$k]);
             }
         }
         $Array = $cap_keys;
     }
+
     return $Array;
 }
 
-function funcs($opts /* internal(T,F), natural(T,F), sort(T,F), return(T,F) */ = array()) {
+function funcs($opts /* internal(T,F), natural(T,F), sort(T,F), return(T,F) */ = [])
+{
     if (!empty($opts)) {
-        $opts = caps_keys($opts, TRUE);
+        $opts = caps_keys($opts, true);
     }
     $funcs = get_defined_functions();
-    if (isset($opts['internal']) && $opts['internal'] === TRUE) {
+    if (isset($opts['internal']) && $opts['internal'] === true) {
         $funcs = $funcs['internal'];
     } else {
         $funcs = $funcs['user'];
     }
-    if (isset($opts['natural']) && $opts['natural'] === TRUE) {
+    if (isset($opts['natural']) && $opts['natural'] === true) {
         foreach ($funcs as $k => $v) {
             $funcs[$k + 1] = $v;
         }
         unset($funcs[0]);
     }
-    if (isset($opts['sort']) && $opts['sort'] === TRUE)
+    if (isset($opts['sort']) && $opts['sort'] === true) {
         asort($funcs);
-    if (isset($opts['return']) && $opts['return'] === TRUE) {
+    }
+    if (isset($opts['return']) && $opts['return'] === true) {
         return $funcs;
     }
     pr($funcs);
 }
 
-function clean($str) {
+function clean($str)
+{
     $str = @trim($str);
     if (get_magic_quotes_gpc()) {
         $str = stripslashes($str);
     }
     $str = strip_tags($str);
+
     return $str;
 }
 
-function bulk_clean($Array, $clean_contents = FALSE) {
+function bulk_clean($Array, $clean_contents = false)
+{
     if (is_array($Array) && !empty($Array)) {
         foreach ($Array as $k => $v) {
-            if ($clean_contents === TRUE) {
+            if ($clean_contents === true) {
                 if (is_array($v)) {
-                    $v = bulk_clean($v, TRUE);
+                    $v = bulk_clean($v, true);
                 } else {
                     $v = clean($v);
                 }
@@ -104,37 +118,44 @@ function bulk_clean($Array, $clean_contents = FALSE) {
             $Array[$k] = $v;
         }
     }
+
     return $Array;
 }
 
-function test_db_conn($server, $username, $password, $database_name) {
+function test_db_conn($server, $username, $password, $database_name)
+{
     $conn = @mysql_connect($server, $username, $password);
     if (is_resource($conn)) {
-        if (@mysql_select_db($database_name))
-            return TRUE;
+        if (@mysql_select_db($database_name)) {
+            return true;
+        }
     }
-    return FALSE;
+
+    return false;
 }
 
-function formatOffset($offset) {
+function formatOffset($offset)
+{
     $hours = $offset / 3600 - 1;
     $remainder = $offset % 3600;
     $sign = $hours > 0 ? '+' : '-';
     $hour = (int) abs($hours);
     $minutes = (int) abs($remainder / 60);
 
-    if ($hour == 0 AND $minutes == 0) {
+    if ($hour == 0 and $minutes == 0) {
         $sign = ' ';
     }
-    return 'GMT' . $sign . str_pad($hour, 2, '0', STR_PAD_LEFT)
-            . ':' . str_pad($minutes, 2, '0');
+
+    return 'GMT'.$sign.str_pad($hour, 2, '0', STR_PAD_LEFT)
+            .':'.str_pad($minutes, 2, '0');
 }
 
-function timezones() {
+function timezones()
+{
     $list = DateTimeZone::listAbbreviations();
     $idents = DateTimeZone::listIdentifiers();
 
-    $data = $offset = $added = array();
+    $data = $offset = $added = [];
     foreach ($list as $abbr => $info) {
         foreach ($info as $zone) {
             if (!empty($zone['timezone_id']) && !in_array($zone['timezone_id'], $added) && in_array($zone['timezone_id'], $idents)) {
@@ -149,11 +170,12 @@ function timezones() {
     }
 
     array_multisort($offset, SORT_DESC, $data);
-    $options = array();
+    $options = [];
     foreach ($data as $key => $row) {
 //        $options[$row['timezone_id']] = /*'(' . formatOffset($row['offset']) . ') - ' . */$row['time'].' - '.$row['timezone_id'];
-        $options[$row['timezone_id']] = $row['time'] . ' - ' . formatOffset($row['offset']) . ' - ' . $row['timezone_id'];
+        $options[$row['timezone_id']] = $row['time'].' - '.formatOffset($row['offset']).' - '.$row['timezone_id'];
     }
     asort($options);
+
     return $options;
 }

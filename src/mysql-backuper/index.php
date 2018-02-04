@@ -1,32 +1,32 @@
 <?php
 
-define('root', getcwd() . '/');
-require_once root . 'include/functions.php';
+define('root', getcwd().'/');
+require_once root.'include/functions.php';
 
-require_once root . 'include/url_defines.php';
-if (!file_exists(root . '/include/db_defines.php')) {
-    header("Location: " . base_url('config/config.php'));
+require_once root.'include/url_defines.php';
+if (!file_exists(root.'/include/db_defines.php')) {
+    header('Location: '.base_url('config/config.php'));
     exit;
 }
-if (!is_dir(root . 'backups/')) {
-    mkdir(root . 'backups/', 0777, TRUE);
+if (!is_dir(root.'backups/')) {
+    mkdir(root.'backups/', 0777, true);
 }
-require_once root . '/include/db_defines.php';
-require_once root . 'include/controller.php';
+require_once root.'/include/db_defines.php';
+require_once root.'include/controller.php';
 //call the controller class
-$config = array(
+$config = [
     'database_type' => database_type,
     'database_name' => database_name,
-    'server' => server,
-    'username' => username,
-    'password' => password
-);
+    'server'        => server,
+    'username'      => username,
+    'password'      => password,
+];
 $obj = new Controller($config);
 
 $database = $obj->_db;
 $obj->_data['obj'] = $obj;
 $obj->_data['database'] = $database;
-$vars = array();
+$vars = [];
 
 if (isset($_GET['vars']) && $_GET['vars']) {
     $vars = $_GET['vars'];
@@ -39,10 +39,10 @@ if (isset($vars) && !empty($vars) && $vars[1]) {
         case 'ajax':
             $obj->view('ajax');
             break;
-        default :
-            $obj->view('elements/404', '', TRUE);
+        default:
+            $obj->view('elements/404', '', true);
             break;
     }
 } else {
-    $obj->view('home', '', TRUE);
+    $obj->view('home', '', true);
 }

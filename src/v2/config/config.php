@@ -53,7 +53,7 @@ $timezones = timezones();
                                 <option hidden value="">Select Time Zone</option>
                                 <?php
                                 foreach ($timezones as $identifier => $name) {
-                                    echo '<option value="' . $identifier . '">' . $name . '</option>';
+                                    echo '<option value="'.$identifier.'">'.$name.'</option>';
                                 }
                                 ?>
                             </select>
@@ -74,4 +74,3 @@ $timezones = timezones();
         </div>
         <?php
         include './footer.php';
-        

@@ -15,17 +15,17 @@ if (isset($_GET['action'])) {
 } elseif (isset($_POST['action'])) {
     extract($_POST);
     if ($action == 'make_config_file') {
-        $dir = dirname(getcwd()) . '/include/';
-        $filename = $dir . 'db_defines.php';
+        $dir = dirname(getcwd()).'/include/';
+        $filename = $dir.'db_defines.php';
         $handle = fopen($filename, 'w');
         if ($handle) {
             $data = '<?php
 define(\'database_type\', \'mysql\');
-define(\'server\', \'' . $server . '\');
-define(\'username\', \'' . $username . '\');
-define(\'password\', \'' . $password . '\');
-define(\'database_name\', \'' . $database_name . '\');
-date_default_timezone_set(\'' . $timezone . '\');
+define(\'server\', \''.$server.'\');
+define(\'username\', \''.$username.'\');
+define(\'password\', \''.$password.'\');
+define(\'database_name\', \''.$database_name.'\');
+date_default_timezone_set(\''.$timezone.'\');
 ';
             fwrite($handle, $data);
             fclose($handle);

@@ -25,8 +25,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="<?php echo isset($vars[1]) && $vars[1] === 'tables' ? "active" : '' ?>"><a href="<?php echo base_url('tables') ?>">Tables</a></li>
-                        <li class="<?php echo isset($vars[1]) && $vars[1] === 'table_config' ? "active" : '' ?>"><a href="<?php echo base_url('table_config') ?>">Table Config</a></li>
+                        <li class="<?php echo isset($vars[1]) && $vars[1] === 'tables' ? 'active' : '' ?>"><a href="<?php echo base_url('tables') ?>">Tables</a></li>
+                        <li class="<?php echo isset($vars[1]) && $vars[1] === 'table_config' ? 'active' : '' ?>"><a href="<?php echo base_url('table_config') ?>">Table Config</a></li>
                     </ul>
                     <button id="del_db_config" type="button" class="btn btn-danger navbar-btn navbar-right hidden-xs"><i class="fa fa-warning"></i> Delete DataBase Configuration File</button>
                     <button class="btn btn-danger btn-xs navbar-btn navbar-right visible-xs" type="button" onclick="$(this).prev().click();">Delete Config File</button>
